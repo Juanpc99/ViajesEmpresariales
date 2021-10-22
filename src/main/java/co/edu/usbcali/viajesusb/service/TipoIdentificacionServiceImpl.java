@@ -293,24 +293,24 @@ public class TipoIdentificacionServiceImpl implements TipoIdentificacionService 
 	 */
 
 	@Override
-	public void eliminarTipoIdentificacion(TipoIdentificacionDTO tipoIdentificacionDTO) throws Exception {
-		if (tipoIdentificacionDTO == null || tipoIdentificacionDTO.getIdTiid() == null) {
+	public void eliminarTipoIdentificacion(Long id) throws Exception {
+		if (id == null ) {
 			throw new Exception("El id tipo identificacion es obligatirio");
 		}
 		// Optional<TipoIdentificacion> tipoIdentificacionBD =
 		// tipoIdentificacionRepository.findById(tipoIdentificacionDTO.getIdTiid());
 
-		if (tipoIdentificacionRepository.existsById(tipoIdentificacionDTO.getIdTiid()) == false) {
+		if (tipoIdentificacionRepository.existsById(id) == false) {
 			throw new Exception("El tipo identificacion no se encontro");
 		}
-		tipoIdentificacionRepository.findById(tipoIdentificacionDTO.getIdTiid()).ifPresent(tipoIdentificacion -> {
+		tipoIdentificacionRepository.findById(id).ifPresent(tipoIdentificacion -> {
 			if (tipoIdentificacion.getCliente().isEmpty() == false) {
-				throw new RuntimeException("El tipo de identificacion " + tipoIdentificacionDTO.getIdTiid()
+				throw new RuntimeException("El tipo de identificacion " + id
 						+ " tiene clientes asignados, por lo que no se puede eliminar");
 			}
 		});
 
-		tipoIdentificacionRepository.deleteById(tipoIdentificacionDTO.getIdTiid());
+		tipoIdentificacionRepository.deleteById(id);
 
 	}
 

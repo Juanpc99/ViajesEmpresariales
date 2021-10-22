@@ -68,5 +68,5 @@ public interface TipoIdentificacionService {
 	public TipoIdentificacion findById(Long idTide) throws Exception; 
 
 
-	public void eliminarTipoIdentificacion(TipoIdentificacionDTO tipoIdentificacionDTO) throws Exception;
+	public void eliminarTipoIdentificacion(Long id) throws Exception;
 }
