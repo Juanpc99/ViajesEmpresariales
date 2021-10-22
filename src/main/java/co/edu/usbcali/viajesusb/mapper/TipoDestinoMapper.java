@@ -28,8 +28,6 @@ import co.edu.usbcali.viajesusb.dto.TipoDestinoDTO;
 public interface TipoDestinoMapper {
 
 	public TipoDestinoDTO tipoDestinoToTipoDestinoDTO(TipoDestino tipoDestino);
-	public TipoDestino tipoDestinoDTOToTipoDestino(TipoDestinoDTO tipoDestinoDTO);
 	
 	public List<TipoDestinoDTO> listTipoDestinoToListTipoDestinoDTO(List<TipoDestino> tipoDestino);
-	public List<TipoDestino> listTipoDestinoDTOToListTipoDestino(List<TipoDestinoDTO> tipoDestinoDTO);
 }

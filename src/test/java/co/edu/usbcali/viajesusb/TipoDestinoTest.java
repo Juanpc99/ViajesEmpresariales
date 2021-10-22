@@ -24,7 +24,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
 import co.edu.usbcali.viajesusb.domain.TipoDestino;
-import co.edu.usbcali.viajesusb.dto.TipoDestinoDTO;
 import co.edu.usbcali.viajesusb.service.TipoDestinoService;
 
 /**   

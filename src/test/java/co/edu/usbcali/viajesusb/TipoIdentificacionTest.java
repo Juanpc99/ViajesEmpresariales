@@ -74,7 +74,7 @@ class TipoIdentificacionTest {
 			e.printStackTrace();
 		}
 	}
-	/**
+	
 	@Test
 	@Transactional
 	void debeGuardarUntipoIdentificacion() {
@@ -92,6 +92,8 @@ class TipoIdentificacionTest {
 			System.out.println(e.getMessage());
 		}
 	}
+	
+	/**
 	@Test
 	@Transactional
 	void debeActualizarTipoIdentificacion() {

@@ -74,7 +74,10 @@ public interface TipoDestinoService {
 	 * @return: List<TipoDestinoDTO>      
 	 * @throws
 	 */
+	
+	/**
 	public List<TipoDestinoDTO> consultarTipoDestinoPorEstado(String estado)throws Exception;
+	*/
 	/**
 	 * 
 	 * @Title: guardarTipoDestino   

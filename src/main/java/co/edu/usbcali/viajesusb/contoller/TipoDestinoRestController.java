@@ -45,49 +45,6 @@ public class TipoDestinoRestController {
 	@Autowired
 	private TipoDestinoMapper tipoDestinoMapper;
 
-	@GetMapping("/getTipoDestinoPorCodigo")
-	public ResponseEntity<TipoDestinoDTO> buscarTipoDestinoPorCodigo(@RequestParam("codigo") String codigo) {
-		try {
-			TipoDestino tipoDestino = tipoDestinoService.findByCodigo(codigo);
-			return ResponseEntity.ok().body(tipoDestinoMapper.tipoDestinoToTipoDestinoDTO(tipoDestino));
-
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-		}
-	}
-
-	@GetMapping("/consultarTipoDestinoPorEstado")
-	public ResponseEntity<List<TipoDestinoDTO>> consultarTipoDestinoAlfabetico(@RequestParam("estado") String estado) {
-		try {
-			List<TipoDestino> listTipoDestino = tipoDestinoService.findByEstadoOrderByNombre(estado);
-			
-
-			return ResponseEntity.ok().body(tipoDestinoMapper.listTipoDestinoToListTipoDestinoDTO(listTipoDestino));
-
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-		}
-	}
-
-	@GetMapping("/encontrarPorCodigoYEstado")
-	public ResponseEntity<TipoDestinoDTO> encontrarPorCodigoYEstado(@RequestParam("codigo")String codigo, @RequestParam("estado") String estado){
-		try {
-			TipoDestino tipoDestino =  tipoDestinoService.findByCodigoAndEstado(codigo, estado);
-			return ResponseEntity.ok(tipoDestinoMapper.tipoDestinoToTipoDestinoDTO(tipoDestino));
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-		}
-	}
-	@GetMapping("/tipoDestinoPorEstado")
-	public ResponseEntity<List<TipoDestinoDTO>> tipoDestinoPorEstado(@RequestParam("estado") String estado){
-		try {
-			
-			return ResponseEntity.ok(tipoDestinoService.consultarTipoDestinoPorEstado(estado));
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-		}
-	}
-	
 	@PostMapping("/guardarTipoDestino")
 	public ResponseEntity<TipoDestinoDTO> guardarTipoDestino(@RequestBody TipoDestinoDTO tipoDestinoDTO){
 		try {
@@ -103,12 +60,12 @@ public class TipoDestinoRestController {
 		try {
 			TipoDestino tipoDestino = tipoDestinoService.actualizarTipoDestino(tipoDestinoDTO);
 			return ResponseEntity.ok(tipoDestinoMapper.tipoDestinoToTipoDestinoDTO(tipoDestino));
-
+			
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 	}
-
+	
 	@DeleteMapping("/eliminarTipodestino")
 	public ResponseEntity<String> eliminarTipoDestino(@RequestParam("id")Long id){
 		try {
@@ -118,4 +75,40 @@ public class TipoDestinoRestController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 	}
+	@GetMapping("/getTipoDestinoPorCodigo")
+	public ResponseEntity<TipoDestinoDTO> buscarTipoDestinoPorCodigo(@RequestParam("codigo") String codigo) {
+		try {
+			TipoDestino tipoDestino = tipoDestinoService.findByCodigo(codigo);
+			return ResponseEntity.ok().body(tipoDestinoMapper.tipoDestinoToTipoDestinoDTO(tipoDestino));
+
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+
+	@GetMapping("/encontrarPorCodigoYEstado")
+	public ResponseEntity<TipoDestinoDTO> encontrarPorCodigoYEstado(@RequestParam("codigo")String codigo, @RequestParam("estado") String estado){
+		try {
+			TipoDestino tipoDestino =  tipoDestinoService.findByCodigoAndEstado(codigo, estado);
+			return ResponseEntity.ok(tipoDestinoMapper.tipoDestinoToTipoDestinoDTO(tipoDestino));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+	@GetMapping("/consultarTipoDestinoPorEstado")
+	public ResponseEntity<List<TipoDestinoDTO>> consultarTipoDestinoAlfabetico(@RequestParam("estado") String estado) {
+		try {
+			List<TipoDestino> listTipoDestino = tipoDestinoService.findByEstadoOrderByNombre(estado);
+			
+
+			return ResponseEntity.ok().body(tipoDestinoMapper.listTipoDestinoToListTipoDestinoDTO(listTipoDestino));
+
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+	
+
+	
+	
 }

@@ -126,7 +126,7 @@ public class ClienteServiceImpl implements ClienteService {
 
 		if (numeroID == null || numeroID.trim().equals("")) {
 			throw new Exception("Debe ingresar un ID");
-		} else if (Utilities.isNumeric(numeroID) == false) {
+		} else if (!Utilities.validarUnLike(numeroID)) {
 			throw new Exception("Debe ingresar un ID valido");
 		}
 		listCliente = clienteRepository.findByNumeroIdentificacionLike(numeroID);
@@ -332,7 +332,7 @@ public class ClienteServiceImpl implements ClienteService {
 	 */
 
 	@Override
-	public void guardarCliente(ClienteDTO clienteDTO) throws Exception {
+	public Cliente guardarCliente(ClienteDTO clienteDTO) throws Exception {
 
 		Cliente cliente = null;
 		TipoIdentificacion tipoIdentificacion = null;
@@ -479,6 +479,8 @@ public class ClienteServiceImpl implements ClienteService {
 		cliente.setIdTiid(tipoIdentificacion);
 
 		clienteRepository.save(cliente);
+		
+		return cliente;
 
 	}
 
@@ -496,7 +498,7 @@ public class ClienteServiceImpl implements ClienteService {
 	 */
 
 	@Override
-	public void actualizarCliente(ClienteDTO clienteDTO) throws Exception {
+	public Cliente actualizarCliente(ClienteDTO clienteDTO) throws Exception {
 
 		if (clienteDTO.getIdClie() == null) {
 			throw new Exception("Debe ingresar un id");
@@ -629,14 +631,14 @@ public class ClienteServiceImpl implements ClienteService {
 		cliente.setUsuCreador(clienteDTO.getUsuCreador());
 		cliente.setEstado(clienteDTO.getEstado());
 
-		tipoIdentificacion = tipoIdentificacionService.findByCodigoAndEstado(clienteDTO.getEstado(), Constantes.ACTIVO);
+		tipoIdentificacion = tipoIdentificacionService.findByCodigoAndEstado(clienteDTO.getCodigoTipoIdentificacion(), Constantes.ACTIVO);
 		if (tipoIdentificacion == null) {
 			throw new Exception("El tipo identificacion " + clienteDTO.getIdTiid() + " no existe");
 		}
 		cliente.setIdTiid(tipoIdentificacion);
 
 		clienteRepository.save(cliente);
-
+		return cliente;
 	}
 
 	/**
@@ -678,20 +680,20 @@ public class ClienteServiceImpl implements ClienteService {
 	 */
 
 	@Override
-	public void eliminarCliente(ClienteDTO clienteDTO) throws Exception {
-		if (clienteDTO == null || clienteDTO.getIdClie() == null) {
+	public void eliminarCliente(Long id) throws Exception {
+		if (id == null ) {
 			throw new Exception("El id cliente es obligatirio");
 		}
-		if (clienteRepository.existsById(clienteDTO.getIdClie()) == false) {
+		if (clienteRepository.existsById(id) == false) {
 			throw new Exception("El cliente no se encontro");
 		}
-		clienteRepository.findById(clienteDTO.getIdClie()).ifPresent(cliente -> {
+		clienteRepository.findById(id).ifPresent(cliente -> {
 			if (cliente.getPlan().isEmpty() == false) {
-				throw new RuntimeException("El cliente: " + clienteDTO.getIdTiid()
+				throw new RuntimeException("El cliente: " + id
 						+ " tiene planes asignados, por lo que no se puede eliminar");
 			}
 		});
-		clienteRepository.deleteById(clienteDTO.getIdClie());
+		clienteRepository.deleteById(id);
 	}
 
 	

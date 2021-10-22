@@ -11,7 +11,6 @@
 package co.edu.usbcali.viajesusb.service;
 
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -135,7 +134,7 @@ public class TipoDestinoServiceImpl implements TipoDestinoService{
 	 * @throws SQLException   
 	 * @see co.edu.usbcali.viajesusb.service.TipoDestinoService#consultarTipoDestinoPorEstado(java.lang.String)   
 	 */
-	
+	/**
 	@Override
 	public List<TipoDestinoDTO> consultarTipoDestinoPorEstado(String estado) throws Exception {
 		List<TipoDestinoDTO> listTipoDestinoDTO = null;
@@ -154,6 +153,7 @@ public class TipoDestinoServiceImpl implements TipoDestinoService{
 		listTipoDestinoDTO = tipoDestinorepository.consultarTipoDestinoPorEstado(estado);
 		return listTipoDestinoDTO;
 	}
+	*/
 	/**   
 	 * <p>Title: guardarTipoDestino</p>   
 	 * <p>Description: </p>   

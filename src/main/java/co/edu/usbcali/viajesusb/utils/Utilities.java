@@ -110,6 +110,15 @@ public class Utilities {
 		}
 		return ret;
 	}
+	public static boolean validarUnLike(String word) {
+		boolean ret = false;
+		Pattern pat = Pattern.compile("[^0-9',.%\\\\s]");
+		Matcher mat = pat.matcher(word);
+		if(!mat.find()) {
+			ret = true;
+		}
+		return ret;
+	}
 	/**
 	 * 
 	 * @Title: soloLetrasMayusculas   
@@ -139,7 +148,7 @@ public class Utilities {
 	 */
 	public static boolean formatoCorreoValido(String correo) {
 		boolean res = false;
-		Pattern pat = Pattern.compile("/^[-\\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\\.){1,125}[A-Z]{2,63}$/i");
+		Pattern pat = Pattern.compile("^[^@]+@[^@]+\\.[a-zA-Z]{2,}$");
 		Matcher mat = pat.matcher(correo);
 		if(mat.find()) {
 			res = true;

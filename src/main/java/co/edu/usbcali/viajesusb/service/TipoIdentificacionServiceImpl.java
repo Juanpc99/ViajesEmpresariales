@@ -126,7 +126,7 @@ public class TipoIdentificacionServiceImpl implements TipoIdentificacionService 
 	 */
 
 	@Override
-	public void guardarTipoIdentificacion(TipoIdentificacionDTO tipoIdentificacionDTO) throws Exception {
+	public TipoIdentificacion guardarTipoIdentificacion(TipoIdentificacionDTO tipoIdentificacionDTO) throws Exception {
 
 		if (tipoIdentificacionDTO.getIdTiid() == null) {
 			throw new Exception("Debe ingresar un id");
@@ -180,7 +180,7 @@ public class TipoIdentificacionServiceImpl implements TipoIdentificacionService 
 		tipoIdentificacion.setEstado(tipoIdentificacionDTO.getEstado());
 
 		tipoIdentificacionRepository.save(tipoIdentificacion);
-
+		return tipoIdentificacion;
 	}
 
 	/**
@@ -197,7 +197,7 @@ public class TipoIdentificacionServiceImpl implements TipoIdentificacionService 
 	 */
 
 	@Override
-	public void actualizarTipoIdentificacion(TipoIdentificacionDTO tipoIdentificacionDTO) throws Exception {
+	public TipoIdentificacion actualizarTipoIdentificacion(TipoIdentificacionDTO tipoIdentificacionDTO) throws Exception {
 		if (tipoIdentificacionDTO.getIdTiid() == null) {
 			throw new Exception("Debe ingresar un id");
 		}
@@ -251,7 +251,7 @@ public class TipoIdentificacionServiceImpl implements TipoIdentificacionService 
 		tipoIdentificacion.setEstado(tipoIdentificacionDTO.getEstado());
 
 		tipoIdentificacionRepository.save(tipoIdentificacion);
-
+		return tipoIdentificacion;
 	}
 
 	/**

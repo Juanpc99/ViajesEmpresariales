@@ -136,7 +136,7 @@ public interface ClienteService {
 	 * @return: void      
 	 * @throws
 	 */
-	public void guardarCliente(ClienteDTO clienteDTO) throws Exception;
+	public Cliente guardarCliente(ClienteDTO clienteDTO) throws Exception;
 	/**
 	 * 
 	 * @Title: actualizarCliente   
@@ -146,7 +146,7 @@ public interface ClienteService {
 	 * @return: void      
 	 * @throws
 	 */
-	public void actualizarCliente(ClienteDTO clienteDTO) throws Exception;
+	public Cliente actualizarCliente(ClienteDTO clienteDTO) throws Exception;
 	/**
 	 * 
 	 * @Title: findById   
@@ -167,7 +167,7 @@ public interface ClienteService {
 	 * @return: void      
 	 * @throws
 	 */
-	public void eliminarCliente(ClienteDTO clienteDTO) throws Exception;
+	public void eliminarCliente(Long id) throws Exception;
 	/**
 	 * 
 	 * @Title: consultarTipoDestinoPorEstado   

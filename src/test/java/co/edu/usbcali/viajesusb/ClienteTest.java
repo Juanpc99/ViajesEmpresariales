@@ -90,7 +90,7 @@ class ClienteTest {
 			List<Cliente> listCliente = null;
 			
 			try {
-				listCliente = clienteService.findByNumeroIdentificacionLike("1fwef");
+				listCliente = clienteService.findByNumeroIdentificacionLike("1%");
 				for(Cliente cliente: listCliente ) {
 					System.out.println(cliente.getNombre() + " "  + cliente.getPrimerApellido() + " " + cliente.getSegundoApellido());
 				}
@@ -105,7 +105,7 @@ class ClienteTest {
 			List<Cliente> listCliente = null;
 			
 			try {
-				listCliente = clienteService.findByNombreLikeIgnoreCase("1551");
+				listCliente = clienteService.findByNombreLikeIgnoreCase("Juan");
 				for(Cliente cliente: listCliente ) {
 					System.out.println(cliente.getNombre() + " "  + cliente.getPrimerApellido() + " " + cliente.getSegundoApellido());
 				}
@@ -183,7 +183,7 @@ class ClienteTest {
 		void debeConsultarClienteConFiltrosYLike() {
 			List<ClienteDTO> listCliente = null;
 			try {
-				listCliente = clienteService.consultarClientesConFiltros("Ju5");
+				listCliente = clienteService.consultarClientesConFiltros("Ju");
 				for(ClienteDTO cliente: listCliente ) {
 					System.out.println(cliente.getNombre() + " " + cliente.getNumeroIdentificacion() + " " + cliente.getEstado() + " " +cliente.getIdTiid());
 				}
@@ -220,14 +220,14 @@ class ClienteTest {
 				System.out.println(e.getMessage());
 			}
 		}
-		
+	
 		@Test
 		@Transactional
 		void debeActualizarElCliente() {
 			ClienteDTO clienteDTO = new ClienteDTO();
 			Calendar fecha1 = new GregorianCalendar(1888, 01, 02);
 			try {
-			clienteDTO.setIdClie(15L);
+			clienteDTO.setIdClie(17L);
 			clienteDTO.setCorreo("juanito@gmail.com");
 			clienteDTO.setNumeroIdentificacion("2645656456");
 			clienteDTO.setPrimerApellido("Hola");
@@ -248,13 +248,14 @@ class ClienteTest {
 				System.out.println(e.getMessage());
 			}
 		}
+	
 		@Test
 		@Transactional
 		void debeEliminarUnCliente() {
 			try {
 				ClienteDTO clienteDTO = new ClienteDTO();
 				
-				clienteDTO.setIdClie(15L);
+				clienteDTO.setIdClie(17L);
 				
 				clienteService.eliminarCliente(clienteDTO);
 			} catch (Exception e) {

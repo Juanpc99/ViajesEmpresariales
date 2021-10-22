@@ -60,9 +60,9 @@ public interface TipoIdentificacionService {
 	 * @return: void      
 	 * @throws
 	 */
-	public void guardarTipoIdentificacion(TipoIdentificacionDTO tipoIdentificacionDTO) throws Exception;
+	public TipoIdentificacion guardarTipoIdentificacion(TipoIdentificacionDTO tipoIdentificacionDTO) throws Exception;
 
-	public void actualizarTipoIdentificacion(TipoIdentificacionDTO tipoIdentificacionDTO) throws Exception;
+	public TipoIdentificacion actualizarTipoIdentificacion(TipoIdentificacionDTO tipoIdentificacionDTO) throws Exception;
 
 
 	public TipoIdentificacion findById(Long idTide) throws Exception; 
