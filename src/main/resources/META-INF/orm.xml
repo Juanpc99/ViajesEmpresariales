@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
+        http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd" version="2.2">
+
+		
+		<entity class="co.edu.usbcali.viajesusb.domain.TipoDestino">
+			<named-native-query name="TipoDestino.consultarTipoDestinoPorEstado" result-set-mapping ="consultarTipoDestinoPorEstado">
+				<query>
+					select
+						id_tide idTide,
+						codigo codigo,
+						nombre nombre,
+						descripcion descripcion
+						from tipo_destino tide
+						where tide.estado = :pEstado
+				</query>
+			</named-native-query>
+		
+		
+		</entity>
+		<entity class="co.edu.usbcali.viajesusb.domain.Cliente">
+			<named-native-query name="Cliente.consultarClientesConFiltros" result-set-mapping ="consultarClientesConFiltros">
+				<query>
+					select
+						nombre nombre,
+						numero_identificacion numeroIdentificacion,
+						id_tiid idTiid,
+						estado estado
+						from cliente cli
+						where cli.nombre like :pNombre
+						order by cli.nombre ASC
+				</query>
+			</named-native-query>
+		
+		
+		</entity>
+		
+</entity-mappings>
+	
+	
